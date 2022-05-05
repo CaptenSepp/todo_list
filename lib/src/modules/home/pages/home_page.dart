@@ -33,7 +33,9 @@ class _HomePage extends StatelessWidget {
               itemCount: provider.todos.length,
               itemBuilder: (BuildContext context, int index) => TodoComponent(
                 title: provider.todos[index].title,
+                index: index,
                 onTap: () {},
+                onDelete: context.read<HomeProvider>().onDelete,
               ),
             ),
           ),

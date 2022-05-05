@@ -8,9 +8,17 @@ class HomeProvider extends ChangeNotifier {
   void onSave() {
     String title = controller.text;
     todos.add(
-      TodoComponent(title: title),
+      TodoComponent(
+        title: title,
+        index: todos.length,
+      ),
     );
     controller.clear();
+    notifyListeners();
+  }
+
+  void onDelete(int index) {
+    todos.removeAt(index);
     notifyListeners();
   }
 }
