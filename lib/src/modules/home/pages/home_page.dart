@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_list/src/modules/home/components/todo_component.dart';
-import 'package:todo_list/src/modules/home/models/todo_model.dart';
+import 'package:todo_list/src/modules/home/providers/home_provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final todos = [
-      TodoModel(id: 'id', title: 'title1', text: 'text1', isDone: false),
-      TodoModel(id: 'id', title: 'title2', text: 'text2', isDone: false),
-      TodoModel(id: 'id', title: 'title3', text: 'text3', isDone: false),
-      TodoModel(id: 'id', title: 'title4', text: 'text4', isDone: false),
-      TodoModel(id: 'id', title: 'title5', text: 'text5', isDone: false),
-      TodoModel(id: 'id', title: 'title6', text: 'text6', isDone: false),
-      TodoModel(id: 'id', title: 'title7', text: 'text7', isDone: false),
-      TodoModel(id: 'id', title: 'title8', text: 'text8', isDone: false),
-    ];
+    return ChangeNotifierProvider(
+      create: (_) => HomeProvider(),
+      child: const _HomePage(),
+    );
+  }
+}
+
+class _HomePage extends StatelessWidget {
+  const _HomePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final provider = context.watch<HomeProvider>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Todo list'),
@@ -26,9 +30,9 @@ class HomePage extends StatelessWidget {
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: todos.length,
+              itemCount: provider.todos.length,
               itemBuilder: (BuildContext context, int index) => TodoComponent(
-                title: todos[index].title,
+                title: provider.todos[index].title,
                 onTap: () {},
               ),
             ),
@@ -44,6 +48,7 @@ class HomePage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextField(
+                      controller: provider.controller,
                       decoration: InputDecoration(
                         label: const Text('title'),
                         enabledBorder: OutlineInputBorder(
@@ -57,7 +62,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: context.read<HomeProvider>().onSave,
                   child: const Text('Save'),
                 ),
               ],
