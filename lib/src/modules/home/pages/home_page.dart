@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list/src/modules/home/components/todo_component.dart';
+import 'package:todo_list/src/modules/home/models/todo_model.dart';
 import 'package:todo_list/src/modules/home/providers/home_provider.dart';
 
 class HomePage extends StatelessWidget {
@@ -29,14 +30,21 @@ class _HomePage extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: ListView.builder(
+            child: ReorderableListView.builder(
               itemCount: provider.todos.length,
               itemBuilder: (BuildContext context, int index) => TodoComponent(
-                title: provider.todos[index].title,
-                index: index,
+                key: provider.todos[index].id,
+                todoModel: provider.todos[index],
                 onTap: () {},
                 onDelete: context.read<HomeProvider>().onDelete,
               ),
+              onReorder: (int oldIndex, int newIndex) {
+                if (oldIndex < newIndex) {
+                  newIndex -= 1;
+                }
+                final TodoModel item = provider.todos.removeAt(oldIndex);
+                provider.todos.insert(newIndex, item);
+              },
             ),
           ),
           const SizedBox(
