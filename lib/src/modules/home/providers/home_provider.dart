@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list/src/modules/home/components/todo_component.dart';
+import 'package:todo_list/src/modules/home/models/todo_model.dart';
 
 class HomeProvider extends ChangeNotifier {
-  List<TodoComponent> todos = [];
+  List<TodoModel> todos = [];
   TextEditingController controller = TextEditingController();
 
   void onSave() {
     String title = controller.text;
     todos.add(
-      TodoComponent(
+      TodoModel(
         title: title,
-        index: todos.length,
       ),
     );
     controller.clear();
     notifyListeners();
   }
 
-  void onDelete(int index) {
-    todos.removeAt(index);
+  void onDelete(UniqueKey id) {
+    todos.removeWhere((todoModel) => todoModel.id == id);
     notifyListeners();
   }
 }

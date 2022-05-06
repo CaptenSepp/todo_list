@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list/src/modules/home/models/todo_model.dart';
 
 class TodoComponent extends StatelessWidget {
-  final String title;
-  final int index;
+  final TodoModel todoModel;
   final void Function()? onTap;
-  final void Function(int index)? onDelete;
+  final void Function(UniqueKey index) onDelete;
 
   const TodoComponent({
     Key? key,
-    required this.title,
-    required this.index,
+    required this.todoModel,
     this.onTap,
-    this.onDelete,
+    required this.onDelete,
   }) : super(key: key);
 
   @override
@@ -36,14 +35,14 @@ class TodoComponent extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                title,
+                todoModel.title,
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
                 ),
               ),
               IconButton(
-                onPressed: () => onDelete?.call(index),
+                onPressed: () => onDelete(todoModel.id),
                 icon: Icon(
                   Icons.delete_forever_rounded,
                   color: Theme.of(context).errorColor,
