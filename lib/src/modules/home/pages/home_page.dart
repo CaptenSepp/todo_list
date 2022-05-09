@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list/src/modules/home/components/todo_component.dart';
+import 'package:todo_list/src/modules/home/components/user_input.dart';
 import 'package:todo_list/src/modules/home/models/todo_model.dart';
 import 'package:todo_list/src/modules/home/providers/home_provider.dart';
 
@@ -11,7 +12,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => HomeProvider(),
-      child: const _HomePage(),
+      child: const UserInput(),
+      //TODO child: const _HomePage(),
     );
   }
 }
