@@ -14,58 +14,52 @@ class UserInput extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Container(
           decoration: const BoxDecoration(
-            color: Colors.deepPurpleAccent,
+            color: Colors.black12,
             borderRadius: BorderRadius.all(
               Radius.circular(20),
             ),
           ),
           child: Column(
             children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: TextField(
-                        controller: provider.controller,
-                        decoration: InputDecoration(
-                          label: const Text('title',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 40)),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                        ),
-                      ),
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: TextField(
+                  //TODO
+                  controller: provider.controller,
+                  decoration: InputDecoration(
+                    label: const Text('title',
+                        style: TextStyle(color: Colors.black, fontSize: 40)),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
                     ),
                   ),
-                  //TODO ElevatedButton(
-                  //   onPressed: context.read<HomeProvider>().onSave,
-                  //   child: const Text('Save'),
-                  // ),
-                ],
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Colors.deepPurple),
-                  // color: Colors.red,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(30)),
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(
                       maxHeight: 300.0,
                     ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(10.0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
                       child: TextField(
-                        decoration: InputDecoration(
-                          border: InputBorder.none,hintText: "you can add your note here..."
+                        //TODO
+                        controller: provider.controller2,
+                        cursorWidth: 0,
+                        textAlign: TextAlign.center,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "add description here...",
+                          hintStyle: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 22,
                         ),
                         maxLines: null,
