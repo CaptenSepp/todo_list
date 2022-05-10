@@ -12,8 +12,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => HomeProvider(),
-      child: const TodoCreate(),
-      //TODO child: const _HomePage(),
+      // TODO child: const TodoCreate(),
+      child: const _HomePage(),
     );
   }
 }
@@ -52,32 +52,22 @@ class _HomePage extends StatelessWidget {
           const SizedBox(
             height: 8,
           ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextField(
-                      controller: provider.controller,
-                      decoration: InputDecoration(
-                        label: const Text('title'),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                      ),
-                    ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: FloatingActionButton.extended(
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => TodoCreate(context),
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: context.read<HomeProvider>().onSave,
-                  child: const Text('Save'),
+                label: const Text(
+                  'Add new Todo',
+                  style: TextStyle(fontSize: 25),
                 ),
-              ],
+              ),
             ),
           )
         ],
