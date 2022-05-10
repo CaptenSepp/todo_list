@@ -24,7 +24,6 @@ class UserInput extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: TextField(
-                  //TODO
                   controller: provider.controller,
                   decoration: InputDecoration(
                     label: const Text('title',
@@ -40,32 +39,51 @@ class UserInput extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(15.0),
-                child: Container(
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(30)),
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(
-                      maxHeight: 300.0,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: TextField(
-                        //TODO
-                        controller: provider.controller2,
-                        cursorWidth: 0,
-                        textAlign: TextAlign.center,
-                        decoration: const InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "add description here...",
-                          hintStyle: TextStyle(fontWeight: FontWeight.bold),
+                child: Expanded(
+                  child: Container(
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(30)),
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(
+                        maxHeight: 300.0,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: TextField(
+                          controller: provider.controller2,
+                          cursorWidth: 0,
+                          textAlign: TextAlign.center,
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            hintText: "add description here...",
+                            hintStyle: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          style: const TextStyle(
+                            fontSize: 22,
+                          ),
+                          maxLines: null,
                         ),
-                        style: const TextStyle(
-                          fontSize: 22,
-                        ),
-                        maxLines: null,
                       ),
                     ),
                   ),
+                ),
+              ),
+              // FloatingButton(
+              Align(
+                alignment: Alignment.bottomRight,
+                child: FloatingActionButton.extended(
+                  label: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'SAVE',
+                      style: TextStyle(fontSize: 25),
+                    ),
+                  ),
+                  onPressed: context.read<HomeProvider>().onSave,
+                  // icon: const Icon(Icons.save, size: 30,),
+                  icon: null,
                 ),
               ),
             ],
