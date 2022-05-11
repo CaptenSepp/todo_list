@@ -14,6 +14,7 @@ dependencies:
     sdk: flutter
   hive: ^2.1.0
   hive_flutter: ^1.1.0
+  path_provider: ^2.0.10
   provider: ^6.0.2
 
 dev_dependencies:
