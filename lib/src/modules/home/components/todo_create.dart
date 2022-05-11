@@ -3,12 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:todo_list/src/modules/home/providers/home_provider.dart';
 
 class TodoCreate extends StatelessWidget {
-  final BuildContext homeContext;
-  const TodoCreate(this.homeContext, {Key? key}) : super(key: key);
+  const TodoCreate({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final provider = homeContext.watch<HomeProvider>();
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -100,7 +98,7 @@ class TodoCreate extends StatelessWidget {
                         style: TextStyle(fontSize: 25),
                       ),
                     ),
-                    onPressed: homeContext.read<HomeProvider>().onSave,
+                    onPressed: context.read<HomeProvider>().onSave,
                     // icon: const Icon(Icons.save, size: 30,),
                     icon: null,
                   ),
