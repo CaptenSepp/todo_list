@@ -1,12 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list/src/modules/home/providers/home_provider.dart';
+import 'package:todo_list/src/modules/home/providers/todo_create_provider.dart';
 
 class TodoCreate extends StatelessWidget {
   const TodoCreate({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => TodoCreateProvider(),
+      child: const _TodoCreate(),
+    );
+  }
+}
+
+class _TodoCreate extends StatelessWidget {
+  const _TodoCreate({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final provider = context.watch<HomeProvider>();
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
