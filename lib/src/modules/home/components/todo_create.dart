@@ -20,7 +20,7 @@ class _TodoCreate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.watch<HomeProvider>();
+    final provider = context.watch<TodoCreateProvider>();
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -112,7 +112,7 @@ class _TodoCreate extends StatelessWidget {
                         style: TextStyle(fontSize: 25),
                       ),
                     ),
-                    onPressed: context.read<HomeProvider>().onSave,
+                    onPressed: context.read<TodoCreateProvider>().onSave,
                     // icon: const Icon(Icons.save, size: 30,),
                     icon: null,
                   ),
