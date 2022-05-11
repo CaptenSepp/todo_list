@@ -8,7 +8,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      //TODO why do we have title property here? when do we use it? should we send the context with HopePage to use it?
+      title: 'Hive',
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
