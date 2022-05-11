@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:todo_list/src/modules/home/models/todo_model.dart';
 
 class TodoCreateProvider extends ChangeNotifier {
-  List<TodoModel> todos = [];
-  TextEditingController controller = TextEditingController();
-  TextEditingController controller2 = TextEditingController();
+  final todosBox = Hive.box<TodoModel>('todos');
+  TextEditingController titleController = TextEditingController();
+  TextEditingController descController = TextEditingController();
 
   void onSave() {
-    String title = controller.text;
-    String? description = controller2.text;
+    String title = titleController.text;
+    String? description = descController.text;
     DateTime createdDate = DateTime.now();
-    todos.add(
-      TodoModel(
-        title: title,
-        description: description,
-        createdDate: createdDate,
-      ),
+
+    TodoModel newTodo = TodoModel(
+      title: title,
+      description: description,
+      createdDate: createdDate,
     );
-    controller.clear();
+
+    todosBox.add(newTodo);
+    titleController.clear();
     notifyListeners();
   }
 }

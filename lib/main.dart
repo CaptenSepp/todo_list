@@ -13,6 +13,6 @@ void main() async {
   Hive.init(appDocumentDirectory.path);
   // await Hive.initFlutter();
   Hive.registerAdapter(TodoModelAdapter());
-  final todosBox = await Hive.openBox('todos');
-  runApp(MyApp());
+  final todosBox = await Hive.openBox<TodoModel>('todos');
+  runApp(const MyApp());
 }

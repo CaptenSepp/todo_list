@@ -35,7 +35,7 @@ class _TodoCreate extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: TextField(
-                      controller: provider.controller,
+                      controller: provider.titleController,
                       // cursorWidth: 0,
                       // textAlign: TextAlign.center,
                       decoration: const InputDecoration(
@@ -64,7 +64,7 @@ class _TodoCreate extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: TextField(
-                            controller: provider.controller2,
+                            controller: provider.descController,
                             cursorWidth: 0,
                             textAlign: TextAlign.center,
                             decoration: const InputDecoration(
