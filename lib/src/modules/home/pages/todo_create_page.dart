@@ -21,6 +21,7 @@ class _TodoCreatePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = context.watch<TodoCreateProvider>();
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -59,7 +60,7 @@ class _TodoCreatePage extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: TextField(
-                            controller: provider.descController,
+                            controller: provider.descriptionController,
                             cursorWidth: 0,
                             textAlign: TextAlign.center,
                             decoration: const InputDecoration(
@@ -87,8 +88,8 @@ class _TodoCreatePage extends StatelessWidget {
                 padding: const EdgeInsets.all(15.0),
                 child: Align(
                   alignment: Alignment.bottomRight,
-                  child: FloatingActionButton.extended(
-                    label: const Padding(
+                  child: ElevatedButton(
+                    child: const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
                         'SAVE',
@@ -96,7 +97,6 @@ class _TodoCreatePage extends StatelessWidget {
                       ),
                     ),
                     onPressed: context.read<TodoCreateProvider>().onSave,
-                    icon: null,
                   ),
                 ),
               ),
