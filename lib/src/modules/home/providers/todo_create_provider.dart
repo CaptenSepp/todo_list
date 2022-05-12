@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
-import 'package:todo_list/src/modules/home/models/todo_model.dart';
 import 'package:todo_list/src/core/db/db.dart';
+import 'package:todo_list/src/modules/home/models/todo_model.dart';
 
 class TodoCreateProvider extends ChangeNotifier {
   //use the box we created before

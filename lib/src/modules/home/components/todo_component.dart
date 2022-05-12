@@ -18,17 +18,12 @@ class TodoComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(16),
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         height: 66,
-        decoration: BoxDecoration(
-          border: Border.all(),
-        ),
         child: Row(
           children: [
             Text(
-              TodoDB.getInstance().todoGet().title,
+              TodoDB.getInstance().todoGet()[0],
             ),
             IconButton(
               onPressed: () => onDelete(todoModel.id),

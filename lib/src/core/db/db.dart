@@ -23,6 +23,7 @@ class TodoDB {
     for (var i = 0; i < hiveTodos.length; i++) {
       todoList.add(hiveTodos.getAt(i));
     }
+    //list of all TodoModels
     return todoList;
   }
 }
