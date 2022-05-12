@@ -1,16 +1,16 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:todo_list/src/core/db/db.dart';
+import 'package:todo_list/src/core/db/todo_db.dart';
 import 'package:todo_list/src/modules/home/models/todo_model.dart';
-import 'package:hive/hive.dart';
 
 class TodoCreateProvider extends ChangeNotifier {
   TextEditingController titleController = TextEditingController();
-  TextEditingController descController = TextEditingController();
-  TodoDB todoDb = TodoDB.getInstance();
+  TextEditingController descriptionController = TextEditingController();
+  final todoDB = TodoDB.instance;
 
   void onSave() {
     String title = titleController.text;
-    String? description = descController.text;
+    String? description = descriptionController.text;
     DateTime createdDate = DateTime.now();
     //make new TodoModel
     TodoModel newTodo = TodoModel(
@@ -18,12 +18,16 @@ class TodoCreateProvider extends ChangeNotifier {
       description: description,
       createdDate: createdDate,
     );
-    newTodo.save();
-    print('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
-    print(newTodo.toString());
-    // todoDb.todoAdd(newTodo);
-
+    todoDB.addTodo(newTodo);
+    if (kDebugMode) {
+      print(
+          '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
+    }
+    if (kDebugMode) {
+      print(newTodo.toString());
+    }
     titleController.clear();
+    descriptionController.clear();
     notifyListeners();
   }
 }
