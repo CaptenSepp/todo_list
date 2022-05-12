@@ -6,7 +6,7 @@ part 'todo_model.g.dart';
 @HiveType(typeId: 0)
 class TodoModel extends HiveObject{
   @HiveField(0)
-  final UniqueKey id = UniqueKey();
+  final id = UniqueKey().toString();
 
   //TODO final cant be chaned after initializing but we want that the user can change the title and description if needed
   @HiveField(1)
