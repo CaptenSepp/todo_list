@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_list/src/core/db/db.dart';
 import 'package:todo_list/src/modules/home/components/todo_component.dart';
 import 'package:todo_list/src/modules/home/components/todo_create.dart';
 import 'package:todo_list/src/modules/home/models/todo_model.dart';
@@ -13,7 +14,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => HomeProvider(),
-      // TODO child: const TodoCreate(),
       child: const _HomePage(),
     );
   }
@@ -32,22 +32,13 @@ class _HomePage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Expanded(
-            child: ReorderableListView.builder(
-              itemCount: provider.todos.length,
-              itemBuilder: (BuildContext context, int index) => TodoComponent(
-                key: provider.todos[index].id,
-                todoModel: provider.todos[index],
-                onTap: () {},
-                onDelete: context.read<HomeProvider>().onDelete,
-              ),
-              onReorder: (int oldIndex, int newIndex) {
-                if (oldIndex < newIndex) {
-                  newIndex -= 1;
-                }
-                final TodoModel item = provider.todos.removeAt(oldIndex);
-                provider.todos.insert(newIndex, item);
-              },
+          ListView.builder(
+            itemCount: TodoDB.getInstance().todoGet().length,
+            itemBuilder: (BuildContext context, int index) => TodoComponent(
+              key: TodoDB.getInstance().todoGet()[index].id,
+              todoModel: TodoDB.getInstance().todoGet()[index],
+              onTap: () {},
+              onDelete: context.read<HomeProvider>().onDelete,
             ),
           ),
           const SizedBox(
@@ -55,19 +46,15 @@ class _HomePage extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.bottomRight,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: FloatingActionButton.extended(
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => TodoCreate(),
-                  ),
+            child: FloatingActionButton.extended(
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => TodoCreate(),
                 ),
-                label: const Text(
-                  'Add new Todo',
-                  style: TextStyle(fontSize: 25),
-                ),
+              ),
+              label: const Text(
+                'Add new Todo',
               ),
             ),
           )

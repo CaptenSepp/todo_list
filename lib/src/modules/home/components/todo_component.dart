@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list/src/core/db/db.dart';
 import 'package:todo_list/src/modules/home/models/todo_model.dart';
 
 class TodoComponent extends StatelessWidget {
@@ -15,42 +16,27 @@ class TodoComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(16),
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-          height: 66,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            color: Colors.white10,
-            border: Border.all(
-              color: Colors.black,
-              width: 2,
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        height: 66,
+        decoration: BoxDecoration(
+          border: Border.all(),
+        ),
+        child: Row(
+          children: [
+            Text(
+              TodoDB.getInstance().todoGet().title,
             ),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                todoModel.title,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                ),
+            IconButton(
+              onPressed: () => onDelete(todoModel.id),
+              icon: Icon(
+                Icons.delete_forever_rounded,
               ),
-              IconButton(
-                onPressed: () => onDelete(todoModel.id),
-                icon: Icon(
-                  Icons.delete_forever_rounded,
-                  color: Theme.of(context).errorColor,
-                  size: 35,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
