@@ -14,9 +14,9 @@ class TodoDB {
   }
 
   //TODO add two method add and get for hiveBox
-  void todoAdd(TodoModel newTodo) {
-    hiveTodos.add(newTodo);
-  }
+  // void todoAdd(TodoModel newTodo) {
+  //   hiveTodos.put(newTodo.id.toString(),newTodo);
+  // }
 
   List todoGet() {
     List todoList = [];

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/src/core/db/db.dart';
 import 'package:todo_list/src/modules/home/models/todo_model.dart';
+import 'package:hive/hive.dart';
 
 class TodoCreateProvider extends ChangeNotifier {
-  //use the box we created before
-  // final todosBox = Hive.openBox<TodoModel>('todos');
   TextEditingController titleController = TextEditingController();
   TextEditingController descController = TextEditingController();
   TodoDB todoDb = TodoDB.getInstance();
@@ -19,8 +18,10 @@ class TodoCreateProvider extends ChangeNotifier {
       description: description,
       createdDate: createdDate,
     );
-
-    todoDb.todoAdd(newTodo);
+    newTodo.save();
+    print('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
+    print(newTodo.toString());
+    // todoDb.todoAdd(newTodo);
 
     titleController.clear();
     notifyListeners();

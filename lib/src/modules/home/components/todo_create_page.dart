@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_list/src/modules/home/providers/home_provider.dart';
 import 'package:todo_list/src/modules/home/providers/todo_create_provider.dart';
 
 class TodoCreate extends StatelessWidget {
@@ -10,13 +9,13 @@ class TodoCreate extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => TodoCreateProvider(),
-      child: const _TodoCreate(),
+      child: const _TodoCreatePage(),
     );
   }
 }
 
-class _TodoCreate extends StatelessWidget {
-  const _TodoCreate({Key? key}) : super(key: key);
+class _TodoCreatePage extends StatelessWidget {
+  const _TodoCreatePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +35,7 @@ class _TodoCreate extends StatelessWidget {
                     padding: const EdgeInsets.all(20.0),
                     child: TextField(
                       controller: provider.titleController,
-                      // cursorWidth: 0,
-                      // textAlign: TextAlign.center,
                       decoration: const InputDecoration(
-                        // border: InputBorder.none,
                         hintText: "Todo",
                         hintStyle: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -51,7 +47,6 @@ class _TodoCreate extends StatelessWidget {
                       maxLines: null,
                     ),
                   ),
-
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Container(
@@ -83,18 +78,6 @@ class _TodoCreate extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // FloatingButton(
-                  // SizedBox(
-                  //   height: 100,
-                  //   child: ListView(
-                  //     children: [
-                  //       CheckboxListTile(
-                  //         value: false,
-                  //         title: Text('data'), onChanged: (bool? value) {  },
-                  //       )
-                  //     ],
-                  //   ),
-                  // ),
                 ],
               ),
             ),
@@ -113,7 +96,6 @@ class _TodoCreate extends StatelessWidget {
                       ),
                     ),
                     onPressed: context.read<TodoCreateProvider>().onSave,
-                    // icon: const Icon(Icons.save, size: 30,),
                     icon: null,
                   ),
                 ),
