@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_list/src/core/db/db.dart';
 import 'package:todo_list/src/modules/home/components/todo_component.dart';
-import 'package:todo_list/src/modules/home/components/todo_create_page.dart';
-import 'package:todo_list/src/modules/home/models/todo_model.dart';
+import 'package:todo_list/src/modules/home/pages/todo_create_page.dart';
 import 'package:todo_list/src/modules/home/providers/home_provider.dart';
-import 'package:hive/hive.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -30,59 +27,37 @@ class _HomePage extends StatelessWidget {
         title: const Text('Todo list'),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          // Expanded(
-          //   child: ListView.builder(
-          //     itemCount: TodoDB.getInstance().todoGet().length,
-          //     itemBuilder: (BuildContext context, int index) => TodoComponent(
-          //       key: TodoDB.getInstance().todoGet()[index].id,
-          //       todoModel: TodoDB.getInstance().todoGet()[index],
-          //       onTap: () {},
-          //       onDelete: context.read<HomeProvider>().onDelete,
-          //     ),
-          //   ),
-          // ),
-          Container(
-            child: Text(
-              'data',
-            ),
-          ),
-          ifExistShow(),
-          const SizedBox(
-            height: 8,
-          ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: FloatingActionButton.extended(
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => const TodoCreate(),
+      body: AnimatedSwitcher(
+        duration: const Duration(
+          milliseconds: 450,
+        ),
+        child: (provider.todoList == null)
+            ? const CircularProgressIndicator()
+            : ListView.separated(
+                itemCount: provider.todoList!.length,
+                separatorBuilder: (BuildContext context, int index) {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 32),
+                    height: 1,
+                    color: Colors.black45,
+                  );
+                },
+                itemBuilder: (context, index) => TodoComponent(
+                  todoModel: provider.todoList![index],
+                  onDelete: provider.onDelete,
+                  onTap: () {},
                 ),
               ),
-              label: const Text(
-                'Add new Todo',
-              ),
-            ),
-          )
-        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => const TodoCreate(),
+          ),
+        ),
+        child: const Icon(Icons.add),
       ),
     );
-  }
-
-  Container ifExistShow() {
-    //TODO todoGet returns a list
-    if (TodoDB.getInstance().todoGet().length != 0) {
-      return Container(
-        child: Text(
-          TodoDB.getInstance().todoGet()[0],
-        ),
-      );
-    } else {
-      return Container(
-        child: Text('no item added'),
-      );
-    }
   }
 }
