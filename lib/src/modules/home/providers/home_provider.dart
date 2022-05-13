@@ -12,11 +12,17 @@ class HomeProvider extends ChangeNotifier {
 
   void initialize() {
     todoList = todoDB.getAllTodos();
+    for (var item in todoDB.getAllTodos()) {
+      print('item.id ${item.id}');
+      print('----------------');
+    }
     notifyListeners();
   }
 
   void onDelete(String id) {
+    print('delete id ${id}');
     todoDB.deleteTodo(id);
+    initialize();
     notifyListeners();
   }
 }

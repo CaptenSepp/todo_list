@@ -15,13 +15,15 @@ class TodoDB {
 
   void addTodo(TodoModel newTodo) {
     _todoBox.put(newTodo.id, newTodo);
+    goBack();
   }
 
   TodoModel? getTodo(String id) {
     return _todoBox.get(id);
   }
 
-  void deleteTodo(String id) {
+  void deleteTodo(id) {
+    print('delete id in db $id');
     _todoBox.delete(id);
   }
 
@@ -30,4 +32,6 @@ class TodoDB {
     todoList.addAll(_todoBox.values);
     return todoList;
   }
+
+  void goBack() {}
 }
