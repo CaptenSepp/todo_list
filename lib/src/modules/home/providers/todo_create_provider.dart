@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_list/src/core/db/todo_db.dart';
 import 'package:todo_list/src/modules/home/models/todo_model.dart';
@@ -19,13 +18,7 @@ class TodoCreateProvider extends ChangeNotifier {
       createdDate: createdDate,
     );
     todoDB.addTodo(newTodo);
-    if (kDebugMode) {
-      print(
-          '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
-    }
-    if (kDebugMode) {
-      print(newTodo.toString());
-    }
+
     titleController.clear();
     descriptionController.clear();
     notifyListeners();

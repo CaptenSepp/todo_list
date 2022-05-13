@@ -4,11 +4,11 @@ import 'package:hive/hive.dart';
 part 'todo_model.g.dart';
 
 @HiveType(typeId: 0)
-class TodoModel extends HiveObject{
+class TodoModel extends HiveObject {
   @HiveField(0)
+  
   final id = UniqueKey().toString();
 
-  //TODO final cant be chaned after initializing but we want that the user can change the title and description if needed
   @HiveField(1)
   final String title;
 
@@ -24,7 +24,6 @@ class TodoModel extends HiveObject{
   TodoModel({
     required this.title,
     required this.createdDate,
-    //TODO i wanted to add DateTime that is given automatic to each TodoModel
     this.description,
     this.isDone = false,
   });
