@@ -6,10 +6,11 @@ part 'todo_model.g.dart';
 @HiveType(typeId: 0)
 class TodoModel extends HiveObject {
   @HiveField(0)
-  final id = UniqueKey().toString();
+  final String title;
 
   @HiveField(1)
-  final String title;
+  // final String id = UniqueKey().toString();
+  final String id;
 
   @HiveField(2)
   final String? description;
@@ -21,9 +22,12 @@ class TodoModel extends HiveObject {
   bool isDone;
 
   TodoModel({
+    required this.id,
     required this.title,
     required this.createdDate,
     this.description,
     this.isDone = false,
+    //id added
+    // this.id = UniqueKey().toString(),
   });
 }

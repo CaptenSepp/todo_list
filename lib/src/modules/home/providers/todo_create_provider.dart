@@ -15,7 +15,7 @@ class TodoCreateProvider extends ChangeNotifier {
     TodoModel newTodo = TodoModel(
       title: title,
       description: description,
-      createdDate: createdDate,
+      createdDate: createdDate, id: UniqueKey().toString(),
     );
     todoDB.addTodo(newTodo);
 
