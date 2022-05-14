@@ -22,12 +22,16 @@ class DefaultElevationButton extends StatelessWidget {
         ),
         //TODO after the onPressed, the debuger goes upward to alignmane and Align and then goes to the method onSave
         onPressed: context.read<TodoCreateProvider>().onSave,
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (_) => const HomePage(),
-        //   ),
-        // );
+        // push(context);
+      ),
+    );
+  }
+
+  void push(context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const HomePage(),
       ),
     );
   }

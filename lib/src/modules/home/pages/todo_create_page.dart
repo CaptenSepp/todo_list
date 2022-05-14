@@ -29,6 +29,13 @@ class _TodoCreatePage extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
+            const SizedBox(
+              height: 150,
+              child: Padding(
+                padding: EdgeInsets.all(15.0),
+                child: DefaultElevationButton(),
+              ),
+            ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.6,
               child: ListView(
@@ -54,13 +61,6 @@ class _TodoCreatePage extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 150,
-              child: Padding(
-                padding: EdgeInsets.all(15.0),
-                child: DefaultElevationButton(),
-              ),
-            )
           ],
         ),
       ),
