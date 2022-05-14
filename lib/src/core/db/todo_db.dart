@@ -19,12 +19,16 @@ class TodoDB {
   }
 
   TodoModel? getTodo(String id) {
-    return _todoBox.get(id);
+    return _todoBox.get(id, defaultValue: _todoBox.getAt(0));
   }
 
-  void deleteTodo(id) {
-    print('delete id in db $id');
-    _todoBox.delete(id);
+  void deleteTodo(String id) {
+    print(
+        'delete id in db ------------------------------------------------ $id');
+    print(_todoBox.get(id));
+    print(_todoBox.get);
+    _todoBox.get(id)!.delete();
+    // _todoBox.delete(id);
   }
 
   List<TodoModel> getAllTodos() {
