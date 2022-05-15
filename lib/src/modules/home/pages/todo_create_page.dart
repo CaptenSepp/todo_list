@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list/src/modules/home/components/add_description_field.dart';
-import 'package:todo_list/src/modules/home/components/default_elevation_button.dart';
+import 'package:todo_list/src/modules/home/components/save_elevation_button.dart';
 import 'package:todo_list/src/modules/home/providers/todo_create_provider.dart';
 
 class TodoCreate extends StatelessWidget {
@@ -33,7 +33,7 @@ class _TodoCreatePage extends StatelessWidget {
               height: 150,
               child: Padding(
                 padding: EdgeInsets.all(15.0),
-                child: DefaultElevationButton(),
+                child: SaveElevationButton(),
               ),
             ),
             SizedBox(
