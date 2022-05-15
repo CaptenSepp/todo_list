@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list/src/core/db/todo_db.dart';
+import 'package:todo_list/src/core/todoDB/todo_db.dart';
 import 'package:todo_list/src/modules/home/models/todo_model.dart';
 
 class HomeProvider extends ChangeNotifier {
@@ -12,8 +12,7 @@ class HomeProvider extends ChangeNotifier {
 
   void initialize() {
     todoList = todoDB.getAllTodos();
-    for (var item in todoDB.getAllTodos()) {
-    }
+    for (var item in todoDB.getAllTodos()) {}
     notifyListeners();
   }
 
