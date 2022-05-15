@@ -23,10 +23,6 @@ class TodoDB {
   }
 
   void deleteTodo(String id) {
-    print(
-        'delete id in db ------------------------------------------------ $id');
-    print(_todoBox.get(id));
-    print(_todoBox.get);
     _todoBox.get(id)!.delete();
     // _todoBox.delete(id);
   }
