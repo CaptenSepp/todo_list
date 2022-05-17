@@ -9,6 +9,10 @@ class TodoDB {
 
   late final Box<TodoModel> _todoBox;
 
+  TodoModel? getTodo(String id) {
+    return _todoBox.get(id, defaultValue: _todoBox.getAt(0));
+  }
+
   Future<void> initialize() async {
     _todoBox = await Hive.openBox<TodoModel>(todoBoxName);
   }
@@ -18,13 +22,9 @@ class TodoDB {
     goBack();
   }
 
-  TodoModel? getTodo(String id) {
-    return _todoBox.get(id, defaultValue: _todoBox.getAt(0));
-  }
-
   void deleteTodo(String id) {
-    _todoBox.get(id)!.delete();
-    // _todoBox.delete(id);
+    _todoBox.delete(id);
+    // _todoBox.get(id)!.delete();
   }
 
   List<TodoModel> getAllTodos() {

@@ -36,7 +36,5 @@ class TodoCreateProvider extends ChangeNotifier {
     descriptionController.clear();
     notifyListeners();
     push(context);
-
-
   }
 }
