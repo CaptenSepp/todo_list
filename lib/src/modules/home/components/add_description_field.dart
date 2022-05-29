@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_list/src/modules/home/providers/todo_create_provider.dart';
 
 class AddDescriptionField extends StatelessWidget {
@@ -25,7 +26,9 @@ class AddDescriptionField extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: TextField(
-              controller: provider.descriptionController,
+              //! both lines below do the same work
+              // controller: provider.descriptionController,
+              controller: context.read<TodoCreateProvider>().descriptionController,
               cursorWidth: 0,
               textAlign: TextAlign.center,
               decoration: const InputDecoration(

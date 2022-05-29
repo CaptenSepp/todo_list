@@ -19,7 +19,7 @@ class TodoModel extends HiveObject {
   @HiveField(4)
   bool isDone;
 
-  TodoModel({
+  TodoModel({ 
     required this.id,
     required this.title,
     required this.createdDate,
