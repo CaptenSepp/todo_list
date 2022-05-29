@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list/src/core/todoDB/todo_db.dart';
 import 'package:todo_list/src/modules/home/models/todo_model.dart';
 import 'package:todo_list/src/modules/home/pages/home_page.dart';
-
-import '../../../data/todoDB/todo_db.dart';
 
 class TodoCreateProvider extends ChangeNotifier {
   TextEditingController titleController = TextEditingController();
