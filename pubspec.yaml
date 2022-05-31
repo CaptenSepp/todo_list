@@ -16,13 +16,14 @@ dependencies:
   hive_flutter: ^1.1.0
   path_provider: ^2.0.10
   provider: ^6.0.2
+  vrouter: ^1.2.1
 
 dev_dependencies:
+  build_runner: ^2.1.10
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
   hive_generator: ^1.1.2
-  build_runner: ^2.1.10
 
 flutter:
   uses-material-design: true

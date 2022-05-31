@@ -12,9 +12,8 @@ class SaveElevationButton extends StatelessWidget {
     return Align(
       alignment: Alignment.bottomRight,
       child: ElevatedButton(
-        //TODO after the onPressed, the debuger goes upward to alignmane and Align and then goes to the method onSave
+        //TODO after the onPressed, the debuger goes upward to alignment and Align and then goes to the method onSave
         onPressed: () => context.read<TodoCreateProvider>().onSave(context),
-        // onPressed: context.read<TodoCreateProvider>().onSave,
         child: const Padding(
           padding: EdgeInsets.all(8.0),
           child: Text(
